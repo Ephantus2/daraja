@@ -20,19 +20,65 @@
     <div>
         <h1 >second package</h1>
         <button class = "ksh10">ksh 10</button>
-        <button class = "ksh10">ksh 20</button>
+        <button class = "ksh20">ksh 20</button>
         <button class="ksh30">ksh 30</button>
     </div>
     <div>
         <h1>third package</h1>
-        <button>ksh 100</button>
-        <button>ksh 200</button>
-        <button>ksh 300</button>
+        <button class = "ksh100">ksh 100</button>
+        <button class = "ksh200">ksh 200</button>
+        <button class = "ksh300">ksh 300</button>
     </div>
     <div>
         <h3>Phone Number</h3>
-        <input type="number" placeholder="enter phone number" />
+        <input type="number" class="phone" placeholder="enter phone number" />
     </div>
   </div>
+  <script>
+    const class1 = document.querySelector('.ksh1');
+    const class2 = document.querySelector('.ksh2');
+    const class3 = document.querySelector('.ksh3');
+    const class10 = document.querySelector('.ksh10');
+    const class20 = document.querySelector('.ksh20');
+    const class30 = document.querySelector('.ksh30');
+    const class100 = document.querySelector('.ksh100');
+    const class200 = document.querySelector('.ksh200');
+    const class300 = document.querySelector('.ksh300');
+    const number = document.querySelector('.phone')
+    const phoneNumber = number.value
+
+    
+
+    const sendRequest = async (amount, number) => {
+        const phoneNumber = number.value
+        console.log(phoneNumber)
+        const details = {
+            amount,
+            number: phoneNumber
+        }
+        try{
+        const response = await fetch('https://carmelia-hyperscholastic-uneugenically.ngrok-free.dev/mpesa/stkpush/', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(details)
+        })
+    }catch(err){
+        console.log(err)
+    }
+    }
+
+    class1.addEventListener('click', () => sendRequest(1, number))
+    class2.addEventListener('click', () => sendRequest(2, number))
+    class3.addEventListener('click', () => sendRequest(3, number))
+    class10.addEventListener('click', () => sendRequest(10, number))
+    class20.addEventListener('click', () => sendRequest(20, number))
+    class30.addEventListener('click', () => sendRequest(30, number))
+    class100.addEventListener('click', () => sendRequest(100, number))
+    class200.addEventListener('click', () => sendRequest(200, number))
+    class300.addEventListener('click', () => sendRequest(300, number))
+
+  </script>
 </body>
 </html>
